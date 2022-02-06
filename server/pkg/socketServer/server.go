@@ -1,4 +1,4 @@
-package server
+package socketServer
 
 import (
 	"TicTacToeServer/pkg/users"

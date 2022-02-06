@@ -8,7 +8,7 @@ func main() {
 
 //func main() {
 //	//localhost
-//	//server.Run("0.0.0.0", 8080)
+//	//socketServer.Run("0.0.0.0", 8080)
 //	board := Board{}
 //	board.New()
 //	////
