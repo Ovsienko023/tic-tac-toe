@@ -1,6 +1,13 @@
 package repository
 
-import "net"
+import (
+	"net"
+)
+
+type DB interface {
+	Init()
+	GetUser(login string) UsersDB
+}
 
 type UsersDB struct {
 	Login      string
@@ -9,11 +16,22 @@ type UsersDB struct {
 }
 
 type DataBase struct {
-	user1 UsersDB
-	user2 UsersDB
+	users []UsersDB
 }
 
-//db := repo.DataBase{
-//	user1: repo.UsersDB{Login: "bob", Password: "9001"},
-//	user2: repo.UsersDB{Login: "kop", Password: "9002"},
-//}
+func (db *DataBase) Init() {
+	db.users = append(
+		db.users,
+		UsersDB{Login: "bob", Password: "9001"},
+		UsersDB{Login: "kop", Password: "9002"},
+	)
+}
+
+func (db *DataBase) GetUser(login string) UsersDB {
+	for _, user := range db.users {
+		if user.Login == login {
+			return user
+		}
+	}
+	return UsersDB{}
+}
